@@ -14,7 +14,6 @@ main {
 
 .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
-    
 }
 
 .desktop {
@@ -44,23 +43,34 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
-/*table {
-    display: flex;
-
+table{
+    font-size: larger;
 }
-/*.left{
-    align-content:flex-end ;
-}*/
+tfoot tr:nth-child(2){
+    border-top: 10px;
+}
+
 @media (min-width: 1200px){
     .empty-whisky{
         display: none;
     }
     .whisky, .empty-whisky, .inkpen, .page {
         filter: drop-shadow(15px 15px 5px var(--shadow));
+        
+        justify-content:space-between ;
+        
+    }
+    .whisky{
+        justify-content: flex-start;
+        font-size: small;
+    }
+    .page{
         flex-direction: row;
     }
     .inkpen{
-        align-items: flex-end;
+        align-items: flex-start;
+        align-items: baseline;
+        flex-direction: row;
     }
 }
 @media (min-width:1100px) and (max-width: 1200px){
@@ -74,6 +84,7 @@ main {
     .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
     flex-direction: row;
+    justify-content:space-between ;
     }
 }
 @media (min-width:1000px) and (max-width: 1100px){
@@ -95,7 +106,7 @@ main {
         display: none;
     }
     .pages{
-        justify-items: center;
+        justify-content: center;
     }
 }
 @media (max-width:800px ){
