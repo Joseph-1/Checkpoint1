@@ -38,6 +38,29 @@ main {
     background-blend-mode: multiply;
 }
 
+form input{
+    margin: 0 auto;
+    width: 96%;
+    height: 30px;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+
+form .submit{
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+table{
+    width: 100%;
+}
+th, td{
+width: 50%;
+    text-align: center;
+}
 .pageLeftpage {
     background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
