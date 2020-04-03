@@ -10,7 +10,7 @@
 <body>
 
 <?php include 'header.php';
-        require_once 'connec.php'; ?>
+    require_once 'connec.php'; ?>
 
 <main class="container">
 
@@ -21,14 +21,42 @@
         <div class="pages">
             <div class="page leftpage">
                 Add a bribe
-                <!-- TODO : Form -->
+                <form action="" method="post">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div>
+                        <label for="payment">Payment</label>
+                        <input type="number" name="payment" required>
+                    </div>
+                    <div>
+                        <input name="send" type="submit" value="Pay!">
+                    </div>
+                </form>
+                <?php
+                    $name = $_POST['name'];
+                    $payment = $_POST['payment'];
+                    if($_POST['send']<>''){
+                        if(!empty($name) && $payment > 0){
+                            $query = 'INSERT INTO bribe(name, payment) VALUES (:name, :payment)';
+                            $statement = $pdo->prepare($query);
+                            $statement->bindValue(':name', $name, \PDO::PARAM_STR);
+                            $statement->bindValue(':payment', $payment, \PDO::PARAM_INT);
+                            $statement->execute();
+                        }
+                        else{
+                            echo "Please, fill in all fields";}
+                    }
+                ?>
             </div>
 
             <div class="page rightpage">
                 <table>
                     <thead><th>S</th></thead>
 
-                    <tbody> <?php
+                    <tbody>
+                    <?php
                     $total = 0;
                     $query = "SELECT name, payment FROM bribe ORDER BY name ASC";
                     $statement = $pdo->query($query);
@@ -53,7 +81,6 @@
                     </tr>
                     </tfoot>
                 </table>
-
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
