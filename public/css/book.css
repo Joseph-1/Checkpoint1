@@ -9,8 +9,8 @@ body {
 main {
     padding-top: 4em;
     font-size: 26pt;
-    font-family: 'Bilbo Swash Caps', cursive;
-}
+    /*font-family: 'Bilbo Swash Caps', cursive;
+*/}
 
 .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
@@ -107,6 +107,20 @@ form{
     color: red;
 }
 
+.alphaIndex{
+    background-color: #e6dfad;
+    text-align: center;
+}
+
+.letter{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
 @media screen and (max-width: 1200px) {
     .inkpen {
         display: none;
@@ -138,6 +152,15 @@ form{
     .pages{
         flex-direction: column-reverse;
         align-items: center;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .alphaIndex{
+        width: 6%;
     }
 }
     

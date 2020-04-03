@@ -15,6 +15,16 @@ require_once '../connec.php';
 <?php include 'header.php'; ?>
 
 <main class="container">
+    <section class="alphaIndex">
+        <?php
+        echo '<a href="book.php">All</a>  //';
+            $letter = range('a','z');
+            foreach ($letter as $value){
+                echo '<a href="?letter=' .$value .'"> ' .strtoupper($value) .'</a>';
+            }
+
+        ?>
+    </section>
     <section class="desktop">
         <img src="image/whisky.png" alt="a whisky glass" class="whisky"/>
         <img src="image/empty_whisky.png" alt="an empty whisky glass" class="empty-whisky"/>
@@ -25,7 +35,9 @@ require_once '../connec.php';
                 <!-- TODO : Form -->
                 <?php
                 if(isset($_POST['addPayment'])){
-                    if($_POST['formName'] !='' && $_POST['formPayment'] > 0){
+                    if($_POST['formName'] == 'Eliott Ness'){
+                        echo '<div class=error>This man is untouchable</div>';
+                    }elseif($_POST['formName'] !='' && $_POST['formPayment'] > 0){
                         $pay = 'INSERT INTO bride VALUES (NULL, :name, :payment)';
                         $statement = $pdo ->prepare($pay);
 
@@ -56,6 +68,18 @@ require_once '../connec.php';
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
+                <div class="letter">
+                <?php
+                if(isset($_GET['letter'])){
+                    $getLetter = $_GET['letter'];
+                    echo strtoupper($getLetter) .'<hr/>';
+                }else{
+                    $getLetter ='';
+                }
+
+                ?>
+
+                </div>
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
@@ -64,7 +88,12 @@ require_once '../connec.php';
                     </tr>
                     </thead>
                 <?php
-                    $table = 'SELECT * FROM bride ORDER BY name';
+                    if($getLetter != ''){
+                        $table = "SELECT * FROM bride WHERE name LIKE '$getLetter%' ORDER BY name";
+                    }else{
+                        $table = "SELECT * FROM bride ORDER BY name";
+                    }
+
                     $showTable = $pdo->query($table)->fetchAll();
                 ?>
                     <tbody>
