@@ -14,9 +14,10 @@
 <main class="container">
 
     <section class="desktop">
+        <div class="glass">
         <img src="image/whisky.png" alt="a whisky glass" class="whisky"/>
-        <img src="image/empty_whisky.png" alt="an empty whisky glass" class="empty-whisky"/>
-
+        <img id="empty" src="image/empty_whisky.png" alt="an empty whisky glass" class="empty-whisky"/>
+        </div>
         <div class="pages">
             <div class="page leftpage">
                 Add a bribe
@@ -27,7 +28,9 @@
                 <!-- TODO : Display bribes and total paiement -->
             </div>
         </div>
+        <div id="pen">
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
+        </div>
     </section>
 </main>
 </body>

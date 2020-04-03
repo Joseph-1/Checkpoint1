@@ -40,3 +40,44 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
+.desktop
+{
+    display: flex;
+    border: 2px solid red;
+    
+
+}
+.desktop div
+{
+
+}
+.container
+{
+
+}
+.glass
+{
+    width: 20%;
+    height: 20%;
+    border: 2px solid green;
+    display: flex;
+
+}
+#empty
+{
+    display: none;
+}
+#pen
+{
+    border: 2px solid yellow;
+    width: 15%;
+    height: 20%;
+    margin-top: 10%;
+}
+@media (max-width: 1200px) {
+    #pen
+    {
+        display: none;
+    }
+    
+}
