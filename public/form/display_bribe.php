@@ -1,3 +1,10 @@
+<?php
+    if($_GET) {
+        echo "<p>".strtoupper($_GET['letter'])."</p>";
+    }
+    ?>
+
+
 <table>
     <thead>
     <tr>
