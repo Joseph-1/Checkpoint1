@@ -61,6 +61,18 @@ main {
         display: none;
     }
 }
+@media screen and (min-width: 1000px) and (max-width: 1100px){
+    .desktop {
+        display: flex;
+        justify-content: space-between;
+    }
+    .whisky {
+        display: none;
+    }
+    .inkpen {
+        display: none;
+    }
+}
 @media screen and (min-width: 800px) and (max-width: 1000px){
     .desktop {
         display: flex;

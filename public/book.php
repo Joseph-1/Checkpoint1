@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <title>Checkpoint PHP 1</title>
 </head>
 <body>
-<?php require_once ('../connec.php.dist'); ?>
+<?php require_once ('../connect.php'); ?>
 <?php include 'header.php'; ?>
 
 <main class="container">
@@ -26,11 +27,24 @@
             </div>
 
             <div class="page rightpage">
-                <?php ?>
+                <?php
+
+                $requete = "SELECT name, payment FROM bribe ORDER BY name";
+                $bribe = $pdo->prepare($requete);
+                $bribe->execute();
+                $result = $bribe->fetchAll();
+                echo "<table><tr><th>Name</th><th>Payment</th></tr>";
+                    foreach ($result as $key => $value) {
+                        echo "<tr>";
+                        echo "<td>".$value['name']. "</td>";
+                        echo"<td>". $value['payment']. "</td>";
+                        echo "</tr>";
+                    }
+                ?>
             </div>
         </div>
         <div>
-        <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
+            <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
         </div>
     </section>
 </main>
