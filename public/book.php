@@ -9,7 +9,12 @@
 </head>
 <body>
 
-<?php include 'header.php'; ?>
+<?php include 'header.php';
+
+$query = "SELECT * INTO bribe ORDER BY name";
+
+
+?>
 
 <main class="container">
 
