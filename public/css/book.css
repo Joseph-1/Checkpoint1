@@ -57,7 +57,9 @@ main {
     overflow: auto;
 }
 
-
+.total-pmnt {
+    border-top: 1px solid black;
+}
 /* making it responsive */
 @media only screen and (min-width: 1100px ) and (max-width: 1200px) {
     .inkpen {

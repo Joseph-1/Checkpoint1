@@ -1,3 +1,24 @@
+<?php
+
+// Connection to database with PDO
+require_once ('../config/connec.php');
+$pdo = new PDO(DSN, USER, PASS);
+
+// Getting data from DB
+$query = "SELECT * FROM bribe ORDER BY name ASC";
+$statement = $pdo->query($query);
+
+// Fetching DB data in an array
+$bribes = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// Sum of all payments
+$totalPmnt = 0;
+foreach ($bribes as $bribe) {
+    $totalPmnt += $bribe['payment'];
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,6 +46,30 @@
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
+                <div class="bribe-table">
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Payment</th>
+                        </tr>
+                        <?php
+                        // Loop to display names and payments in the table
+                        foreach ($bribes as $bribe) {
+                            echo '<tr>';
+                            echo '<td>' . $bribe['name'] . '</td>';
+                            echo '<td>' . $bribe['payment'] . '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                        <tfoot>
+                            <tr>
+                                <th class="total-pmnt">Total payments</th>
+                                <!-- Displaying the sum of all payments -->
+                                <td class="total-pmnt"><?= $totalPmnt; ?></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
