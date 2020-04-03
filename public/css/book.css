@@ -41,22 +41,55 @@ main {
     background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
 }
+form label {
+    font-size: 21pt;
+}
+
+form input{
+    display: block;
+    margin: 0.5em;
+
+}
+
+form input[type=text], form input[type=number] {
+    width: 80%;
+}
 
 .rightpage {
     background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
+
+}
+
+table {
+    width: 100%;
+}
+
+thead th {
+    border-bottom: 1px black solid;
+}
+
+tbody, tfoot {
     text-align: right;
 }
 
-td {
-    border-bottom: black 1px solid;
+tbody td {
+    width: 50%;
+}
+
+tfoot td {
+    border-top: black 2px solid;
 }
 
 @media (min-width: 1200px) {
 
+    .pages {
+        margin-top: 0;
+    }
+
     .inkpen {
-        align-self: center;
+        align-self: end;
     }
 
     .empty-whisky {
