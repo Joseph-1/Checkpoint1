@@ -22,13 +22,34 @@
 
         <div class="pages">
             <div class="page leftpage">
-                Add a bribe
-                <!-- TODO : Form -->
+                <h3>Add a Bribe</h3>
+                <form method="post">
+                    <div>
+                        <input type="text" name="name" placeholder="name">
+                    </div>
+                    <div>
+                        <input type="text" name="payment" placeholder="payment">
+                    </div>
+                    <div>
+                        <button type="submit" name="add" value="add">Pay</button>
+                    </div>
+                </form>
+                <?php
+                if(isset($_POST['add'])){
+                    if($_POST['name']!='' && $_POST['payment']!=''){
+                        $requete = 'INSERT INTO bribe VALUES(NULL, :name, :payment)';
+                        $statement = $pdo->prepare($requete);
+                        $statement->bindValue(":name", $_POST['name'], PDO::PARAM_STR);
+                        $statement->bindValue(":payment", $_POST['payment'], PDO::PARAM_INT);
+                        $statement->execute();
+                    }
+                }
+                ?>
             </div>
 
             <div class="page rightpage">
                 <?php
-
+                // Affichage
                 $requete = "SELECT name, payment FROM bribe ORDER BY name";
                 $bribe = $pdo->prepare($requete);
                 $bribe->execute();
@@ -44,7 +65,7 @@
             </div>
         </div>
         <div>
-            <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
+        <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
         </div>
     </section>
 </main>
