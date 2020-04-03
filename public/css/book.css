@@ -16,6 +16,28 @@ main {
     filter: drop-shadow(15px 15px 5px var(--shadow));
 }
 
+.empty-whisky{
+    width: 300px;
+    height: 253px;
+    display: none;
+}
+
+.desktop{
+    display: flex;
+    width: 100%;
+}
+
+.whisky{
+    width: 300px;
+    height: 253px;
+}
+
+.inkpen{
+    width: 269px;
+    height: 489px;
+    align-self: flex-end;
+}
+
 .pages {
     display: flex;
     width: auto;
@@ -40,3 +62,38 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
+
+@media screen and (max-width: 1200px) {
+    .inkpen {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .whisky{
+        display: none;
+    }
+
+    .empty-whisky{
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .empty-whisky{
+        display: none;
+    }
+    .pages{
+        width: 100%;
+        margin-right: auto;
+        flex-basis: 100%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .pages{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+    

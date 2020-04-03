@@ -12,7 +12,6 @@
 <?php include 'header.php'; ?>
 
 <main class="container">
-
     <section class="desktop">
         <img src="image/whisky.png" alt="a whisky glass" class="whisky"/>
         <img src="image/empty_whisky.png" alt="an empty whisky glass" class="empty-whisky"/>
