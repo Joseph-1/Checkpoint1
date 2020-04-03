@@ -1,6 +1,3 @@
-<?php 
-    require_once "../src/connec.php"
-?>
 <!doctype html>
 <html lang="en">
 <head>
