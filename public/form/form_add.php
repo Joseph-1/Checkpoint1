@@ -4,7 +4,7 @@ if ($_POST) {
 //           CHECK ELIOTT NESS
 
     $checkEN=strtolower($_POST['name']);
-    if(!empty($_POST)&& ($checkEN =! "eliott ness")) {
+    if($checkEN != "eliott ness") {
 
 //        ADD IF NAME AND PAYMENT ARE IN POST
 
