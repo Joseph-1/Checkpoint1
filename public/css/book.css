@@ -21,7 +21,6 @@ main {
     width: auto;
     flex-basis : 65%;
     margin:1em;
-    border: blue 1px solid;
 }
 
 .page {
@@ -41,20 +40,12 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
-.desktok {
-    display: flex;
-    border: deeppink 10px solid;
-
-}
 .whys {
     display: flex;
-    border: 1px solid yellow;
     width: 17%;
     margin: 0 13%;
 }
-.container {
-    border: aqua 1px solid;
-}
+
 .display {
     display: flex;
     justify-content: flex-end;
