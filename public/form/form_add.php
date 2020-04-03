@@ -1,8 +1,17 @@
 <?php
 if ($_POST) {
+
+//           CHECK ELIOTT NESS
+
     $checkEN=strtolower($_POST['name']);
     if(!empty($_POST)&& ($checkEN =! "eliott ness")) {
+
+//        ADD IF NAME AND PAYMENT ARE IN POST
+
         if (!empty($_POST['name']) && !empty($_POST['payment']) && $_POST['payment'] > 0) {
+
+//          QUERY FOR ADD
+//
             $query_send_bribe = 'INSERT INTO bribe SET name=:name, payment=:payment';
             $add_bribe = $pdo->prepare($query_send_bribe);
 
@@ -10,6 +19,8 @@ if ($_POST) {
             $add_bribe->bindValue(':payment', $_POST['payment'], PDO::PARAM_INT);
 
             $add_bribe->execute();
+
+//            IF SOMETHING WRONG IN FORM
 
         } else {
             if (empty($_POST['name']) && empty($_POST['payment'])) {

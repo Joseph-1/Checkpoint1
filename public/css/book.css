@@ -21,7 +21,11 @@ body {
     align-content: center;
 }
 
-
+ .letter_alpha p,
+ .letter_alpha {
+    text-decoration: none;
+    color:black;
+}
 
 
 main {

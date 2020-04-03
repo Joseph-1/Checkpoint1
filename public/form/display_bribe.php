@@ -1,10 +1,11 @@
 <?php
+//      MAKE A LITTLE PRETTIER
     if($_GET) {
         echo "<p>".strtoupper($_GET['letter'])."</p>";
     }
     ?>
 
-
+<!--        TABLE       -->
 <table>
     <thead>
     <tr>
@@ -13,6 +14,7 @@
     </tr>
     </thead>
     <tbody>
+<!--    QUERY FOR DISPLAY THE GOOD PAGE IF GET-->
     <?php
     $totalBribe = 0;
     if($_GET) {
@@ -34,6 +36,7 @@
                 }
             }
         }
+//        QUERY IF NO GET
     }else {
 
         $query = 'SELECT * FROM bribe';
