@@ -24,7 +24,15 @@ require_once ('../connec.php');
             <div class="page leftpage">
                 Add a bribe
                 <!-- TODO : Form -->
-                <form method="POST"
+                <form method="POST" action="">
+                    <label for="name">
+                        <input id="name" name="name" type="text">
+                    </label>
+                    <label for="payment">
+                        <input id="payment" name="payment" type="number">
+                    </label>
+                    <input type="submit" value="ADD BRIBE">
+                </form>
             </div>
 
             <div class="page rightpage">
