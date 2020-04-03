@@ -4,11 +4,12 @@ if ($_POST) {
 //           CHECK ELIOTT NESS
 
     $checkEN=strtolower($_POST['name']);
+    $checkLetterOnly = ctype_alpha($_POST['name']);
     if($checkEN != "eliott ness") {
 
 //        ADD IF NAME AND PAYMENT ARE IN POST
 
-        if (!empty($_POST['name']) && !empty($_POST['payment']) && $_POST['payment'] > 0) {
+        if (!empty($_POST['name']) && !empty($_POST['payment']) && $_POST['payment'] > 0 && $checkLetterOnly) {
 
 //          QUERY FOR ADD
 //
@@ -31,6 +32,8 @@ if ($_POST) {
                 $error = ["Payment is empty"];
             } elseif ($_POST['payment'] < 0) {
                 $error["Payment value is negative"];
+            } elseif (!$checkLetterOnly){
+                $error[0]="The name is not a number !";
             }
 
             echo "<p>" . $error[0] . "</p>";
