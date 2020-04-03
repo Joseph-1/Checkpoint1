@@ -7,7 +7,7 @@ body {
 }
 
 main {
-    padding-top: 4em;
+    padding-top: 80px;;
     font-size: 26pt;
     font-family: 'Bilbo Swash Caps', cursive;
 }
@@ -39,4 +39,146 @@ main {
     background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
+}
+/* Customisation */
+.empty-whisky {
+    display: none;
+}
+
+.item-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.pen-container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+/* Table */
+table {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.8em;
+}
+
+tbody {
+    width: 50%;
+}
+
+tbody tr {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+thead {
+    width: 100%;
+    display: flex;
+}
+
+thead tr {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+tfoot {
+    display: flex;
+    border-top: 1px solid black;
+    width: 100%;
+    text-align: justify;
+    justify-content: flex-end;
+    font-weight: bold;
+}
+
+/* Alphabetical index */
+.index-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-family: serif;
+    background: lightgrey;
+    font-size: 0.7em;
+}
+
+.index-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.letter-title {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: solid black 2px;
+    padding-bottom: 30px;
+}
+
+/***********
+ * @media
+ **********/
+/* 1100px to 1199 */
+@media screen and (max-width: 1200px) {
+    .pen-container{
+        display: none;
+    }
+}
+
+/* 1000px to 1099 */
+@media screen and (max-width: 1100px) {
+    .empty-whisky {
+        display: block;
+    }
+
+    .whisky{
+        display: none;
+    }
+}
+
+/* 800px to 999 */
+@media screen and (max-width: 1000px) {
+    .empty-whisky {
+        display: none;
+    }
+
+    .item-container {
+        justify-content: center;
+    }
+
+    .pages{
+        flex-basis: 100%;
+    }
+}
+
+/* Less than 799px */
+@media screen and (max-width: 1000px) {
+    .pages {
+        flex-direction: column;
+        align-items: center;
+    }
+    .leftpage, .rightpage {
+        width: 100%;
+    }
+
+    .rightpage {
+        order: 1;
+    }
+
+    .leftpage {
+        order: 2;
+    }
+
+    .index-container{
+        flex-direction: column;
+        position: fixed;
+        z-index: 10;
+        height: 100vh;
+    }
+
+    .desktop {
+        margin-left: 70px;
+    }
+
 }
