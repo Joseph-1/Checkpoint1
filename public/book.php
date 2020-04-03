@@ -59,10 +59,10 @@
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
                 <?php
-                $query = "select * from bribe order by name";
-                $showBribes = $pdo->prepare($query);
-                $showBribes->execute();
-                $result=$showBribes->fetchAll();
+                    $query = "select * from bribe order by name";
+                    $showBribes = $pdo->prepare($query);
+                    $showBribes->execute();
+                    $result=$showBribes->fetchAll();
                 ?>
                 <table>
                     <thead>
@@ -79,10 +79,10 @@
                             }
                         ?>
                     </tbody>
-                    
+                            
                     <tfoot>
                         <?php
-                           
+                           echo " a faire";
                         ?>
                     </tfoot>
                 </table>
