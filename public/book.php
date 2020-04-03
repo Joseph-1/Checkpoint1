@@ -71,12 +71,21 @@
                         echo "</tbody>";
                     }
                     // Total
-                    $requete = "SELECT SUM(payment) FROM bribe";
+                    $requete = "SELECT SUM(payment) AS prix_total FROM bribe;";
                     $bribe = $pdo->prepare($requete);
                     $bribe->execute();
                     $result = $bribe->fetchAll();
-                    echo "<tfoot><tr><th>Totals</th><td>". array_sum($result) ."</td></tr></tfoot>";
+                    foreach ($result as $key => $value) {
+                        echo "<tbody>";
+                        echo "<tr>";
+                        echo "<th>Total</th>";
+                        echo "<td>".$value['prix_total']. "</td>";
+                        echo "</tr>";
+                        echo "</tbody>";
+                    }
+                    echo "</tfoot>";
                     echo "</table>";
+
                 ?>
             </div>
         </div>
