@@ -25,16 +25,33 @@
             </div>
 
             <div class="page rightpage">
-                <table> <?php
-                    $query = "SELECT * FROM bribe ORDER BY name ASC";
+                <table>
+                    <thead><th>S</th></thead>
+
+                    <tbody> <?php
+                    $total = 0;
+                    $query = "SELECT name, payment FROM bribe ORDER BY name ASC";
                     $statement = $pdo->query($query);
                     $bribe = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                    foreach($bribe as $name => $payement) {
-                        echo "<tr><td>" . $name . "</td>
-                                  <td>" . $payement . "</td></tr>"
-                    }
-                    ?>
+
+                        foreach($bribe as $array) {
+                            echo "<tr>";
+                            foreach($array as $name => $payment){
+                                    $total += $payment;
+                                    echo "<td>". $payment ."</td><td>";
+                            }
+                            echo "</tr>";
+                        }
+                        ?>
+
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Total : </th>
+                        <?php echo "<td>" . $total . "</td>"; ?>
+                    </tr>
+                    </tfoot>
                 </table>
 
             </div>
