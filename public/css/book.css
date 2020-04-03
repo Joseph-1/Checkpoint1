@@ -44,6 +44,13 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
+/*table {
+    display: flex;
+
+}
+/*.left{
+    align-content:flex-end ;
+}*/
 @media (min-width: 1200px){
     .empty-whisky{
         display: none;

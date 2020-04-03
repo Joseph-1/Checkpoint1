@@ -1,3 +1,6 @@
+<?php 
+require('connec.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,6 +29,38 @@
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
+                <?php
+                $query = "SELECT * FROM bride ORDER BY name ASC";
+                $statement = $pdo->query($query);
+                $brides= $statement->fetchAll();
+                ?>
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Name</th>
+                        <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($brides as $bride)
+                        {?>
+                        <tr>
+                        <td><?php echo " $bride[name]";?></td>
+                        <td class="left"><?php echo " $bride[payment]";?></td>
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                        <td></td>
+                        <?php $query = "SELECT SUM(payment) FROM bride";
+                                $statement = $pdo->query($query);
+                                $sum= $statement->fetch();
+                        ?>
+                        <td><?php echo "$sum[0]";?></td>
+                        </tr>
+                       
+                    </tfoot>
             </div>
         </div>
         
