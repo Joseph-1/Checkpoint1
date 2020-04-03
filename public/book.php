@@ -53,15 +53,24 @@ $total = $statement->fetch();;
                 if(isset($_POST['added'])) {
                     //verification du form
                     if ((!empty($_POST['name'])) and (!empty($_POST['payment']))) {
+                        $name = trim($_POST['name']);
+                        $payment = trim($_POST['payment']);
+                        // On passe tout en minuscule, puis on ramène la première lettre de chaque mot en majuscule pour ne pas se faire trigger par des petits joueurs :)
+                        $name = strtolower($name);
+                        $name = ucwords($name);
                         // verif paiement supérieur à 0
                         if ($_POST['payment'] <= 0) {
-                            echo "<h2>Il y a une erreur dans ce montant, corrigez-le avant de valider!</h2>";
+                            echo "<div class='annonce'>Il y a une erreur dans ce montant, corrigez-le avant de valider!</div>";
                         } // si tout est ok
+
+                        //Verifions si c'est Eliott Ness !
+                        if($name=="Eliott Ness"){
+                            echo "<div class='annonce'>This man is untouchable!</div>";
+                        }
                         else {
                             // requete d'envoi
                             $query = "INSERT INTO bribe (name,payment) VALUES (:name,:payment)";
-                            $name = trim($_POST['name']);
-                            $payment = trim($_POST['payment']);
+
 
                             $statement = $pdo->prepare($query);
                             $statement->bindValue(":name", $name, PDO::PARAM_STR);
@@ -71,7 +80,7 @@ $total = $statement->fetch();;
                             header("location: book.php");
                         }
                     } else {
-                        echo "<h2>Aucun champ ne doit être vide</h2>";
+                        echo "<div class='annonce'>Aucun champ ne doit être vide</div>";
                     }
                 }
                 ?>
@@ -105,7 +114,7 @@ $total = $statement->fetch();;
 
 
                         if($listTri==null) {
-                            echo "<div class='annonce'>Désolé, personne sur cette liste ne commence par".$_GET['letter']."</div>";
+                            echo "<div class='annonce'>Désolé, personne sur cette liste ne commence par la lettre ".$_GET['letter']."</div>";
                         } else {?>
                     <thead>
                         <th colspan="2"><?= $_GET['letter'] ?></th>

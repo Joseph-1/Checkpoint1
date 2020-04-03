@@ -54,6 +54,7 @@ main {
 
 .annonce {
     font-family: 'Roboto Mono', monospace;
+    font-size: 1vw;
 }
 
 .leftpage {
@@ -61,7 +62,7 @@ main {
     border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
 }
 form label, table{
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 form input{
@@ -171,6 +172,10 @@ tfoot td {
     .index a {
         font-size: 4vw;
 
+    }
+
+    .annonce {
+        font-size: 4vw;
     }
 
     .inkpen,.glasses{
