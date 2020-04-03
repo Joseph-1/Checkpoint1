@@ -41,8 +41,8 @@ main {
     background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
 }
-form label {
-    font-size: 21pt;
+form label, table{
+    font-size: 2vw;
 }
 
 form input{
@@ -64,6 +64,7 @@ form input[type=text], form input[type=number] {
 
 table {
     width: 100%;
+    border-spacing: 10px;
 }
 
 thead th {
@@ -117,6 +118,10 @@ tfoot td {
         display: none;
     }
 
+    table {
+        border-spacing: 5px;
+    }
+
 }
 
 @media (max-width: 799px) {
@@ -140,5 +145,14 @@ tfoot td {
 
     .rightpage {
         order: -1;
+    }
+
+    table {
+        border-spacing: 3px;
+    }
+
+
+    form label, table {
+        font-size: 5vw;
     }
 }

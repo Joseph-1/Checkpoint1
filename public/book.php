@@ -85,7 +85,7 @@ $total = $statement->fetch();;
                     <?php
                     //affichage de la liste
                     foreach ($list as $value){
-                        echo "<tr><td>". $value['name']. "</td><td>". $value['payment']. "</td></tr>";
+                        echo "<tr><td>". $value['name']. "</td><td>". $value['payment']. "€</td></tr>";
                     }
                     ?>
                     </tbody>
@@ -94,7 +94,7 @@ $total = $statement->fetch();;
 
                     <?php
                     //affichage du total
-                        echo "<td>".$total[0]."</td>";
+                        echo "<td>".$total[0]."€</td>";
                     ?>
                     </tfoot>
 
