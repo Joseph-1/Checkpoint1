@@ -40,3 +40,51 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
+@media screen and (min-width: 1200px) {
+    .desktop {
+        display: flex;
+        justify-content: space-between;
+    }
+    .empty-whisky {
+        display: none;
+    }
+}
+@media screen and (min-width: 1100px) and (max-width: 1200px){
+    .desktop {
+        display: flex;
+        justify-content: space-between;
+    }
+    .empty-whisky {
+        display: none;
+    }
+    .inkpen {
+        display: none;
+    }
+}
+@media screen and (min-width: 800px) and (max-width: 1000px){
+    .desktop {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .empty-whisky,.inkpen,.whisky, .yb-glass {
+        display: none;
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 800px){
+    .desktop {
+        display: flex;
+        flex-direction: column;
+    }
+    .page {
+
+    }
+    .leftpage {
+        order: 1;
+    }
+    .rightpage{
+        order: 0;
+    }
+    .empty-whisky,.inkpen,.whisky, .yb-glass {
+        display: none;
+    }
+}
