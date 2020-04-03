@@ -1,3 +1,5 @@
+/*general format 1200px*/
+@media screen and (min-width: 1200px){
 @import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
 
 body {
@@ -14,6 +16,83 @@ main {
 
 .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
+    
+}
+.empty-whisky{
+    display: none;
+}
+section{
+    display: flex;
+    justify-content: space-evenly;
+}
+.whisky{
+    width: 30%;
+    height: 30%;
+}
+.inkpen{
+    margin-top: 150px;
+    width: 20%;
+    height: 20%;
+}
+.pages {
+    display: flex;
+    width: auto;
+    flex-basis : 65%;
+    margin:1em;
+}
+
+.page {
+    height:65vh;
+    padding: 3vw;
+    width: 50%;
+    background-blend-mode: multiply;
+}
+
+.leftpage {
+    background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
+    border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
+}
+
+.rightpage {
+    background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
+    border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
+    overflow: auto;
+}
+}
+/*Format 1100px*/
+
+@media only screen and (min-width: 1100px) and (max-width: 1200px){
+
+@import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
+
+body {
+    background-image: url('../image/background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    padding-top: 4em;
+    font-size: 26pt;
+    font-family: 'Bilbo Swash Caps', cursive;
+}
+
+.whisky, .empty-whisky, .inkpen, .page {
+    filter: drop-shadow(15px 15px 5px var(--shadow));
+}
+.empty-whisky{
+    display: none;
+}
+section{
+    display: flex;
+    justify-content: space-evenly;
+}
+.whisky{
+    width: 30%;
+    height: 30%;
+}
+.inkpen{
+    display: none;
 }
 
 .pages {
@@ -40,3 +119,182 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
+}
+/*mmin width 1000 et Max width 1100*/
+
+@media only screen and (min-width: 1000px) and (max-width: 1100px){
+
+@import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
+
+body {
+    background-image: url('../image/background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    padding-top: 4em;
+    font-size: 26pt;
+    font-family: 'Bilbo Swash Caps', cursive;
+}
+
+.whisky, .empty-whisky, .inkpen, .page {
+    filter: drop-shadow(15px 15px 5px var(--shadow));
+}
+.whisky{
+    display: none;
+}
+section{
+    display: flex;
+    justify-content: space-evenly;
+}
+.empty-whisky{
+    width: 30%;
+    height: 30%;
+}
+.inkpen{
+    display: none;
+}
+
+.pages {
+    display: flex;
+    width: auto;
+    flex-basis : 65%;
+    margin:1em;
+}
+
+.page {
+    height:65vh;
+    padding: 3vw;
+    width: 50%;
+    background-blend-mode: multiply;
+}
+
+.leftpage {
+    background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
+    border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
+}
+
+.rightpage {
+    background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
+    border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
+    overflow: auto;
+}
+}
+/* Min width 800 et Max width 1000 px */
+
+@media only screen and (min-width: 800px) and (max-width: 1000px){
+
+@import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
+
+body {
+    background-image: url('../image/background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    padding-top: 4em;
+    font-size: 26pt;
+    font-family: 'Bilbo Swash Caps', cursive;
+}
+
+.whisky, .empty-whisky, .inkpen, .page {
+    filter: drop-shadow(15px 15px 5px var(--shadow));
+}
+.whisky{
+    display: none;
+}
+section{
+    display: flex;
+    justify-content: space-evenly;
+}
+.empty-whisky{
+    display: none;
+}
+.inkpen{
+    display: none;
+}
+
+.pages {
+    display: flex;
+    width: auto;
+    flex-basis : 65%;
+    margin:1em;
+}
+
+.page {
+    height:65vh;
+    padding: 3vw;
+    width: 50%;
+    background-blend-mode: multiply;
+}
+
+.leftpage {
+    background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
+    border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
+}
+
+.rightpage {
+    background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
+    border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
+    overflow: auto;
+}
+}
+/* en dessous de 800px*/
+@media only screen and (max-width: 800px){
+@import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
+
+    body {
+        background-image: url('../image/background.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    main {
+        padding-top: 4em;
+        font-size: 26pt;
+        font-family: 'Bilbo Swash Caps', cursive;
+    }
+    
+    .whisky, .empty-whisky, .inkpen, .page {
+        filter: drop-shadow(15px 15px 5px var(--shadow));
+    }
+    .whisky{
+        display: none;
+    }
+    .empty-whisky{
+        display: none;
+    }
+    .inkpen{
+        display: none;
+    }
+    
+    .pages {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        flex-basis : 65%;
+        margin:1em;
+    }
+    
+    .page {
+        height:65vh;
+        padding: 3vw;
+        width: 50%;
+        background-blend-mode: multiply;
+    }
+    
+    .leftpage {
+        background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
+        border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
+    }
+    
+    .rightpage {
+        background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
+        border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
+        overflow: auto;
+    }
+
+}
+    
