@@ -72,8 +72,8 @@ foreach ($bribes as $bribe) {
                     echo $errorMsg;
                 }
                 ?>
-                <div class="add-form">
-                    <form action="" method="post">
+                <div class="">
+                    <form action="" class="add-form" method="post">
                         <input type="text" class="input" id="payment" name="name" placeholder="Name" required>
                         <input type="number" class="input" id="payment" name="payment" placeholder="Payment" required>
                         <button type="submit" class="button" id="add" name="add">Add</button>
@@ -100,7 +100,7 @@ foreach ($bribes as $bribe) {
                         ?>
                         <tfoot>
                             <tr>
-                                <th class="total-pmnt">Total payments</th>
+                                <th class="total-pmnt">Total</th>
                                 <!-- Displaying the sum of all payments -->
                                 <td class="total-pmnt"><?= $totalPmnt; ?></td>
                             </tr>
