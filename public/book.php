@@ -1,3 +1,17 @@
+<?php
+//Connection to my BD and inisialisation de l'objet $$pdo
+require_once ('../connec.php');
+?>
+
+<?php
+    //requete sql bribe
+    $requete = "SELECT * FROM bribe";
+    // je fais appel à ma requete
+    $categories = $pdo->query($requete)->fetchAll();
+
+    // debug
+    //var_dump($categories);
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,10 +35,25 @@
             <div class="page leftpage">
                 Add a bribe
                 <!-- TODO : Form -->
+
             </div>
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
+	            <?php
+	            if(!empty($categories)) {
+		            foreach ($categories as $key => $value) {
+			            echo "<tr>";
+			            echo "<th>" . $value['name'] . "</th>";
+			            echo "<td>" . $value['payment'] . "</td>";
+			            echo "</tr>";
+		            }
+	            }else{
+		            echo "<tr>";
+		            echo "<td colspan='5'>Aucune catégorie est disponible</td>";
+		            echo "</tr>";
+	            }
+	            ?>
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>

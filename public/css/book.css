@@ -12,8 +12,21 @@ main {
     font-family: 'Bilbo Swash Caps', cursive;
 }
 
+.desktop {
+    display: flex;
+}
+
 .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
+}
+
+.whisky {
+    width: 25%;
+    height: 25%;
+}
+
+.empty-whisky {
+    display: none;
 }
 
 .pages {

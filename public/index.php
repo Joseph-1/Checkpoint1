@@ -1,3 +1,7 @@
+<?php
+	//Connection to my BD and inisialisation de l'objet $$pdo
+	require_once ('../connec.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
