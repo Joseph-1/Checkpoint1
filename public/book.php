@@ -9,7 +9,10 @@
 </head>
 <body>
 
-<?php include 'header.php'; ?>
+<?php
+require_once("../connec.php.dist");
+include 'header.php';
+?>
 
 <main class="container">
 
@@ -24,7 +27,29 @@
             </div>
 
             <div class="page rightpage">
-                <!-- TODO : Display bribes and total paiement -->
+                <?php
+                $requete = "SELECT * FROM bride ORDER by name";
+                $Bride = $pdo->query($requete)->fetchAll();
+                ?>
+
+                <table>
+                    <thead>
+                         <tr>
+                            <th>NAME</th>
+                            <th>PAYMENT</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        foreach ($Bride as $key => $value) {
+                            echo "<tr>";
+                            echo "<td>" . $value['name'] . "</td>";
+                            echo "<td>" . $value['payment'] . "</td>";
+                            echo "<tr>";
+                        }
+                    ?>
+
+
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
