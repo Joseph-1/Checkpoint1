@@ -5,9 +5,9 @@ require_once ('../connec.php');
 
 <?php
     //requete sql bribe
-    $requete = "SELECT * FROM bribe";
+    $requeteselect = "SELECT * FROM bribe";
     // je fais appel à ma requete
-    $categories = $pdo->query($requete)->fetchAll();
+    $categories = $pdo->query($requeteselect)->fetchAll();
 
     // debug
     //var_dump($categories);
@@ -35,17 +35,39 @@ require_once ('../connec.php');
             <div class="page leftpage">
                 Add a bribe
                 <!-- TODO : Form -->
-
+                <form method="post">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text">
+                    <label for="payment">Payment</label>
+                    <input id="payment" name="payment" type="number">
+                    <input type="submit" name="pay" value="Pay!" class="submit">
+                </form>
+	            <?php
+	            if (isset($_POST['pay'])){
+		            if ($_POST['name']!='' && $_POST['payment']!=''){
+			            $requeteinsert = "INSERT INTO bribe VALUES (NULL, :name , :payment)";
+			            $statement = $pdo->prepare($requeteinsert);
+			            $statement->bindValue(":name", $_POST['name'], PDO::PARAM_STR);
+			            $statement->bindValue(":payment", $_POST['payment'], PDO::PARAM_INT);
+			            $statement->execute();
+			            header("Location: book.php");
+		            }
+	            }
+	            ?>
             </div>
+
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
+                <?php
+                    $requeteshow = "SELECTE name, payment FROM"
+                ?>
 	            <?php
 	            if(!empty($categories)) {
 		            foreach ($categories as $key => $value) {
 			            echo "<tr>";
-			            echo "<th>" . $value['name'] . "</th>";
-			            echo "<td>" . $value['payment'] . "</td>";
+			            echo "<td>" . $value['name']. " " . "</td>";
+			            echo "<td>" . $value['payment'] . "</td><hr>";
 			            echo "</tr>";
 		            }
 	            }else{
