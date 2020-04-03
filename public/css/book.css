@@ -63,6 +63,28 @@ main {
     overflow: auto;
 }
 
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th{
+    border: solid 1px black;
+}
+
+td{
+    border: solid 1px black;
+}
+
+#name{
+    width: 60%;
+}
+
+#payment{
+    width: 40%;
+}
+
+
 @media screen and (max-width: 1200px) {
     .inkpen {
         display: none;
