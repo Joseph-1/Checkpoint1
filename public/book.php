@@ -16,13 +16,15 @@ $error=[];
 <body>
 
 <?php include 'header.php'; ?>
-<header>
-    <nav>
 
-    </nav>
-</header>
+
 
 <main class="container">
+    <div class="nav_alpha">
+        <nav class="alpha">
+            <?php include_once('./form/alphabet.php');?>
+        </nav>
+    </div>
 
     <section class="desktop">
         <img src="image/whisky.png" alt="a whisky glass" class="whisky"/>
