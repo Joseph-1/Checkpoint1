@@ -23,6 +23,35 @@ require_once '../connec.php';
             <div class="page leftpage">
                 Add a bribe
                 <!-- TODO : Form -->
+                <?php
+                if(isset($_POST['addPayment'])){
+                    if($_POST['formName'] !='' && $_POST['formPayment'] > 0){
+                        $pay = 'INSERT INTO bride VALUES (NULL, :name, :payment)';
+                        $statement = $pdo ->prepare($pay);
+
+                        $statement->bindValue(':name', $_POST['formName'], PDO::PARAM_STR);
+                        $statement->bindValue(':payment', $_POST['formPayment'], PDO::PARAM_INT);
+                        $statement->execute();
+                        header('location: ./book.php');
+                    }else{
+                        echo '<div class=error>Error</div>';
+                    }
+                }
+                ?>
+                <form method="post">
+                    <div class="form">
+                        <label for="formName">Name *</label>
+                        <input type="text" required="" class="formInput" name="formName" placeholder="Name">
+                    </div>
+                    <div class="form">
+                        <label for="fromPayment">Payment *</label>
+                        <input type="number" required="" class="formInput" name="formPayment" placeholder="Payment">
+                    </div>
+                    <div align="right">
+                        <button type="submit" value="addPayment" name="addPayment" class="btn">Submit the payment</button>
+                    </div>
+                </form>
+
             </div>
 
             <div class="page rightpage">
@@ -30,8 +59,8 @@ require_once '../connec.php';
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th  id="name" scope="col">Name</th>
-                        <th  id="payment" scope="col">Payment</th>
+                        <th  id="tabName" scope="col">Name</th>
+                        <th  id="tabPayment" scope="col">Payment</th>
                     </tr>
                     </thead>
                 <?php
@@ -56,12 +85,11 @@ require_once '../connec.php';
                         }
                     ?>
                     </tbody>
-                        <th scope="row">Totals</th>
-                    <?php
-                        echo '<td>' .$total .'</td>';
-                    ?>
                     <tfoot>
-
+                        <th scope="row">Totals</th>
+                        <?php
+                        echo '<td>' .$total .'</td>';
+                        ?>
                     </tfoot>
                 </table>
             </div>
