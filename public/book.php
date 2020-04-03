@@ -16,6 +16,11 @@ $error=[];
 <body>
 
 <?php include 'header.php'; ?>
+<header>
+    <nav>
+
+    </nav>
+</header>
 
 <main class="container">
 

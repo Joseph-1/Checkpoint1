@@ -1,8 +1,8 @@
 <table>
     <thead>
     <tr>
-        <th >Payment</th>
         <th >Name</th>
+        <th >Payment</th>
     </tr>
     </thead>
     <tbody>
@@ -16,8 +16,8 @@
     $totalBribe=0;
     foreach ($allBribe as $key => $value){
         echo "<tr>";
-        echo "<td>" . $value['payment'] . "</td>";
         echo "<th>" . $value['name'] . "</th>";
+        echo "<td>" . $value['payment'] . "</td>";
         echo "</tr>";
         $totalBribe+= $value['payment'];
     }
@@ -25,8 +25,8 @@
     </tbody>
     <tfoot>
     <tr>
-        <td><?php echo $totalBribe?></td>
         <th>Total</th>
+        <td><?php echo $totalBribe?></td>
     </tr>
     </tfoot>
 </table>

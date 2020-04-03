@@ -37,7 +37,6 @@ main {
     flex-direction: column;
     align-items: center;
     align-content: center;
-
 }
 
 .rightpage {
@@ -48,6 +47,20 @@ main {
     flex-direction: column;
     align-items: center;
     align-content: center;
+}
+
+table tbody th{
+    padding-right: 20%;
+    text-align: left;
+}
+
+table thead{
+    text-align: left;
+    text-decoration: underline;
+}
+
+table tfoot{
+    text-align: left;
 }
 
 
