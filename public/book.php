@@ -1,5 +1,8 @@
 <?php
 require_once ('../connec.php');
+$pdo = new PDO(DSN,USER,PASS);
+$error=[];
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,51 +27,23 @@ require_once ('../connec.php');
             <div class="page leftpage">
                 Add a bribe
                 <!-- TODO : Form -->
+                <?php
+                    require_once ('./form/form_add.php')
+                ?>
                 <form method="POST" action="">
-                    <label for="name">
+                    <label for="name">Name</label>
                         <input id="name" name="name" type="text">
-                    </label>
-                    <label for="payment">
+
+                    <label for="payment">Payment</label>
                         <input id="payment" name="payment" type="number">
-                    </label>
-                    <input type="submit" value="ADD BRIBE">
+
+                    <input type="submit" value="ADD BRIBE" class="submit">
                 </form>
             </div>
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total payment -->
-                <table>
-                    <thead>
-                    <tr>
-                        <th >Payment</th>
-                        <th >Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                            <?php
-
-                            $pdo = new PDO(DSN,USER,PASS);
-                            $query= 'SELECT * FROM bribe';
-                            $req = $pdo->prepare($query);
-                            $req->execute();
-                            $allBribe= $req->fetchAll();
-                            $totalBribe=0;
-                                foreach ($allBribe as $key => $value){
-                                    echo "<tr>";
-                                    echo "<td>" . $value['payment'] . "</td>";
-                                    echo "<th>" . $value['name'] . "</th>";
-                                    echo "</tr>";
-                                    $totalBribe+= $value['payment'];
-                                }
-                            ?>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <td><?php echo $totalBribe?></td>
-                        <th>Total</th>
-                    </tr>
-                    </tfoot>
-                </table>
+                <?php require_once ('./form/display_bribe.php') ?>
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
