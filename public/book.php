@@ -11,7 +11,7 @@
 
 <?php
 include 'header.php';
-include 'connect.php';
+include 'connec.php';
 ?>
 
 <main class="container">
