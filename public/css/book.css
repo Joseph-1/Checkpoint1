@@ -7,15 +7,31 @@ body {
 }
 
 main {
-    padding-top: 2em;
+    padding-top: 2.5em;
     font-size: 26pt;
     font-family: 'Bilbo Swash Caps', cursive;
 }
 
 .desktop{
     display: flex;
+    margin-top: 1.5em;
+
 }
 
+.index {
+    display: flex;
+    justify-content: space-around;
+    background: lightgray;
+    text-transform: uppercase;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.index a {
+    color: dimgrey;
+    text-decoration: none;
+    margin: 1vh;
+    font-size: 1.5vw;
+}
 
 .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
@@ -36,6 +52,9 @@ main {
     background-blend-mode: multiply;
 }
 
+.annonce {
+    font-family: 'Roboto Mono', monospace;
+}
 
 .leftpage {
     background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
@@ -114,8 +133,13 @@ tfoot td {
     .desktop {
         justify-content: center;
     }
+
     .inkpen,.glasses{
         display: none;
+    }
+
+    .pages {
+        flex-basis: 100%;
     }
 
     table {
@@ -125,9 +149,28 @@ tfoot td {
 }
 
 @media (max-width: 799px) {
+
+    .container {
+        display: flex;
+    }
     .desktop {
+        display: initial;
+        flex-grow:2;
         justify-content: center;
         margin:0;
+    }
+
+    .index {
+        flex-wrap: wrap;
+        flex-direction: column;
+        order: 2;
+        margin-right: 2px;
+        width: 5vw;
+    }
+
+    .index a {
+        font-size: 4vw;
+
     }
 
     .inkpen,.glasses{
@@ -137,6 +180,7 @@ tfoot td {
     .pages {
         flex-wrap: wrap;
         flex-basis: 100%;
+        margin-left: 0;
     }
 
     .page {
@@ -155,4 +199,6 @@ tfoot td {
     form label, table {
         font-size: 5vw;
     }
+
+
 }

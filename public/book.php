@@ -17,15 +17,26 @@ $query = "SELECT * FROM bribe ORDER BY name";
 $statement = $pdo->query($query);
 $list = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-// requete pour le total
+// requete pour le total par defaut
 $query = "SELECT sum(payment) FROM bribe";
 $statement = $pdo->query($query);
 $total = $statement->fetch();;
 // je debug
 //var_dump($total);
+
+
 ?>
 
 <main class="container">
+
+    <div class="index">
+        <?php
+        foreach (range('A', 'Z') as $letter) {
+            echo "<a href='?letter=".$letter."'>".$letter . "</a>";
+        }
+
+        ?>
+    </div>
 
     <section class="desktop">
         <div class="glasses">
@@ -76,27 +87,65 @@ $total = $statement->fetch();;
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
                 <table>
-                    <thead>
-                    <th colspan="2">S</th>
 
+                    <?php
+                    //verification de si letter est dans le get
+                    if(isset($_GET['letter'])){
+                        //on affiche seulement la lettre demandée
+                        $query = "SELECT * FROM bribe WHERE name LIKE '".$_GET['letter']."%' ORDER BY name";
+                        $statement = $pdo->query($query);
+                        $listTri = $statement->fetchAll(PDO::FETCH_ASSOC);
+                        //Je verifie le contenu du tableau
+                        //var_dump($listTri);
+
+                        //je calcule maintenant le total pour l'utiliser ensuite
+                        $query = "SELECT sum(payment) FROM bribe WHERE name LIKE '".$_GET['letter']."%'";
+                        $statement = $pdo->query($query);
+                        $total = $statement->fetch();;
+
+
+                        if($listTri==null) {
+                            echo "<div class='annonce'>Désolé, personne sur cette liste ne commence par".$_GET['letter']."</div>";
+                        } else {?>
+                    <thead>
+                        <th colspan="2"><?= $_GET['letter'] ?></th>
+                    </thead>
+                    <tbody>
+                    <?php
+                            foreach ($listTri as $value) {
+                                echo "<tr><td>" . $value['name'] . "</td><td>" . $value['payment'] . "€</td></tr>";
+                            }
+                            echo "</tbody>
+                    <tfoot>
+                        <th>Total:</th>
+                        <td>" . $total[0] . "€</td> 
+                    </tfoot>";
+                        }
+
+                    }
+                    else  { ?>
+                    <thead>
+                        <th colspan="2">DEBTS</th>
                     </thead>
 
                     <tbody>
-                    <?php
-                    //affichage de la liste
-                    foreach ($list as $value){
-                        echo "<tr><td>". $value['name']. "</td><td>". $value['payment']. "€</td></tr>";
-                    }
-                    ?>
+                        <?php
+                        //affichage de la liste par defaut
+                        foreach ($list as $value) {
+                            echo "<tr><td>" . $value['name'] . "</td><td>" . $value['payment'] . "€</td></tr>";
+                        }
+                        ?>
                     </tbody>
                     <tfoot>
-                    <th>Total:</th>
+                        <th>Total:</th>
 
-                    <?php
-                    //affichage du total
-                        echo "<td>".$total[0]."€</td>";
+                        <?php
+                        //affichage du total
+                        echo "<td>" . $total[0] . "€</td> 
+                    </tfoot>";
+                    }
                     ?>
-                    </tfoot>
+
 
 
                 </table>
