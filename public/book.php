@@ -1,3 +1,6 @@
+<?php
+require_once ('../connec.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,10 +24,43 @@
             <div class="page leftpage">
                 Add a bribe
                 <!-- TODO : Form -->
+                <form method="POST"
             </div>
 
             <div class="page rightpage">
-                <!-- TODO : Display bribes and total paiement -->
+                <!-- TODO : Display bribes and total payment -->
+                <table>
+                    <thead>
+                    <tr>
+                        <th >Payment</th>
+                        <th >Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            <?php
+
+                            $pdo = new PDO(DSN,USER,PASS);
+                            $query= 'SELECT * FROM bribe';
+                            $req = $pdo->prepare($query);
+                            $req->execute();
+                            $allBribe= $req->fetchAll();
+                            $totalBribe=0;
+                                foreach ($allBribe as $key => $value){
+                                    echo "<tr>";
+                                    echo "<td>" . $value['payment'] . "</td>";
+                                    echo "<th>" . $value['name'] . "</th>";
+                                    echo "</tr>";
+                                    $totalBribe+= $value['payment'];
+                                }
+                            ?>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td><?php echo $totalBribe?></td>
+                        <th>Total</th>
+                    </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
