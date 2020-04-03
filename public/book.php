@@ -23,6 +23,23 @@
         <div class="pages">
             <div class="page leftpage">
                 <h3>Add a Bribe</h3>
+                <?php
+                if(isset($_POST['add'])){
+                    if($_POST['name']!='' && $_POST['payment']!=''){
+                        if($_POST['payment'] > 0){
+                            $requete = 'INSERT INTO bribe VALUES(NULL, :name, :payment)';
+                            $statement = $pdo->prepare($requete);
+                            $statement->bindValue(":name", $_POST['name'], PDO::PARAM_STR);
+                            $statement->bindValue(":payment", $_POST['payment'], PDO::PARAM_INT);
+                            $statement->execute();
+                            header('location:book.php#list');
+                        }
+                        else{
+                            echo "Error";
+                        }
+                    }
+                }
+                ?>
                 <form method="post">
                     <div>
                         <input type="text" name="name" placeholder="name">
@@ -34,33 +51,32 @@
                         <button type="submit" name="add" value="add">Pay</button>
                     </div>
                 </form>
-                <?php
-                if(isset($_POST['add'])){
-                    if($_POST['name']!='' && $_POST['payment']!=''){
-                        $requete = 'INSERT INTO bribe VALUES(NULL, :name, :payment)';
-                        $statement = $pdo->prepare($requete);
-                        $statement->bindValue(":name", $_POST['name'], PDO::PARAM_STR);
-                        $statement->bindValue(":payment", $_POST['payment'], PDO::PARAM_INT);
-                        $statement->execute();
-                    }
-                }
-                ?>
+
             </div>
 
-            <div class="page rightpage">
+            <div id="list" class="page rightpage">
                 <?php
                 // Affichage
                 $requete = "SELECT name, payment FROM bribe ORDER BY name";
                 $bribe = $pdo->prepare($requete);
                 $bribe->execute();
                 $result = $bribe->fetchAll();
-                echo "<table><tr><th>Name</th><th>Payment</th></tr>";
+                echo "<table><thead><tr><th>Name</th><th>Payment</th></tr></thead>";
                     foreach ($result as $key => $value) {
+                        echo "<tbody>";
                         echo "<tr>";
                         echo "<td>".$value['name']. "</td>";
                         echo"<td>". $value['payment']. "</td>";
                         echo "</tr>";
+                        echo "</tbody>";
                     }
+                    // Total
+                    $requete = "SELECT SUM(payment) FROM bribe";
+                    $bribe = $pdo->prepare($requete);
+                    $bribe->execute();
+                    $result = $bribe->fetchAll();
+                    echo "<tfoot><tr><th>Totals</th><td>". array_sum($result) ."</td></tr></tfoot>";
+                    echo "</table>";
                 ?>
             </div>
         </div>
