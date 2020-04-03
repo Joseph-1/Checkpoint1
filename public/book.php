@@ -10,10 +10,19 @@
 <body>
 
 <?php include 'header.php';
+require "../connec.php";
 
-$query = "SELECT * INTO bribe ORDER BY name";
+//requete pour l'affichage
+$query = "SELECT * FROM bribe ORDER BY name";
+$statement = $pdo->query($query);
+$list = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-
+// requete pour le total
+$query = "SELECT sum(payment) FROM bribe";
+$statement = $pdo->query($query);
+$total = $statement->fetch();;
+// je debug
+var_dump($total);
 ?>
 
 <main class="container">
@@ -32,6 +41,29 @@ $query = "SELECT * INTO bribe ORDER BY name";
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
+                <table>
+                    <thead>
+                    <th>S</th>
+                    </thead>
+                    <tbody>
+                    <?php
+                    //affichage de la liste
+                    foreach ($list as $value){
+                        echo "<tr><td>". $value['name']. "</td><td>". $value['payment']. "</td></tr>";
+                    }
+                    ?>
+                    </tbody>
+                    <tfoot>
+                    <th>Total:</th>
+
+                    <?php
+                    //affichage du total
+                        echo "<td>".$total[0]."</td>";
+                    ?>
+                    </tfoot>
+
+
+                </table>
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
