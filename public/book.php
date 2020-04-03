@@ -4,15 +4,29 @@
 require_once ('../config/connec.php');
 $pdo = new PDO(DSN, USER, PASS);
 
-// Adding a bribe
-if (isset($_POST['add'])) {
-    $query = "INSERT INTO bribe VALUES (NULL, :name, :payment)";
-    $statement = $pdo->prepare($query);
+// Adding a bribe into the DB
+if (isset($_POST['add']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!empty($_POST['name']) && !empty($_POST['payment']) && $_POST['payment'] > 0) {
+        // Building insert prepared query
+        $query = "INSERT INTO bribe VALUES (NULL, :name, :payment)";
+        $statement = $pdo->prepare($query);
 
-    $statement->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
-    $statement->bindValue(':payment', $_POST['payment'], PDO::PARAM_INT);
+        // Securing the values with placeholders
+        $statement->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
+        $statement->bindValue(':payment', $_POST['payment'], PDO::PARAM_INT);
 
-    $statement->execute();
+        // Executing the query
+        $statement->execute();
+    }
+    elseif (empty($_POST['name']) && $_POST['payment'] > 0) {
+        $errorMsg = 'Please, write a name';
+    }
+    elseif (!empty($_POST['name']) && $_POST['payment'] <= 0) {
+        $errorMsg = 'Please, enter a positive payment';
+    }
+    else {
+        $errorMsg = 'Please, enter name and payment';
+    }
 }
 
 // Getting data from DB
@@ -51,8 +65,13 @@ foreach ($bribes as $bribe) {
 
         <div class="pages">
             <div class="page leftpage">
-                Add a bribe
+                <h3>Add a bribe</h3>
                 <!-- TODO : Form -->
+                <?php
+                if (isset($errorMsg)) {
+                    echo $errorMsg;
+                }
+                ?>
                 <div class="add-form">
                     <form action="" method="post">
                         <input type="text" class="input" id="payment" name="name" placeholder="Name" required>
