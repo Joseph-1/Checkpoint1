@@ -4,6 +4,17 @@
 require_once ('../config/connec.php');
 $pdo = new PDO(DSN, USER, PASS);
 
+// Adding a bribe
+if (isset($_POST['add'])) {
+    $query = "INSERT INTO bribe VALUES (NULL, :name, :payment)";
+    $statement = $pdo->prepare($query);
+
+    $statement->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
+    $statement->bindValue(':payment', $_POST['payment'], PDO::PARAM_INT);
+
+    $statement->execute();
+}
+
 // Getting data from DB
 $query = "SELECT * FROM bribe ORDER BY name ASC";
 $statement = $pdo->query($query);
@@ -42,6 +53,13 @@ foreach ($bribes as $bribe) {
             <div class="page leftpage">
                 Add a bribe
                 <!-- TODO : Form -->
+                <div class="add-form">
+                    <form action="" method="post">
+                        <input type="text" class="input" id="payment" name="name" placeholder="Name" required>
+                        <input type="number" class="input" id="payment" name="payment" placeholder="Payment" required>
+                        <button type="submit" class="button" id="add" name="add">Add</button>
+                    </form>
+                </div>
             </div>
 
             <div class="page rightpage">
