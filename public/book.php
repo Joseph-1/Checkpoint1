@@ -15,7 +15,16 @@ $payment=$_POST['payment'];
 <body>
 
 <?php include 'header.php'; ?>
+<div class="alpha">
+    <?php
+$letters = range('A','Z');?>
+<ul>
+<?php foreach($letters as $letter){?>
 
+<?php echo '<li><a href="?letter='.$letter.'">'.$letter.'</a> </li>';}?> 
+<?php echo "   ";   ?>
+</ul>
+</div>
 <main class="container">
 
     <section class="desktop">
@@ -29,7 +38,11 @@ $payment=$_POST['payment'];
                 <br>
               
                 <!-- TODO : Form -->
-                <?php   if($name != NULL && $payment>0) 
+                <?php   if($name == 'Eliott Ness')
+                        {
+                        echo "This man is untouchable";
+                        }
+                        elseif($name != NULL && $payment>0) 
                         {$query = "INSERT INTO bride (bride_name, payment) VALUES (:bride_name, :payment)";
                             $statement = $pdo->prepare($query);
                             $statement->bindValue(':bride_name',$name, \PDO::PARAM_STR);
@@ -51,12 +64,12 @@ $payment=$_POST['payment'];
                 <form action="" method="post" class="form-example">
                     <div class="form-example">
                         <label for="name">Name 
-                        <input type="text" name="name" id="name" >
+                        <input type="text" name="name" id="name" size="30">
                         </label>
                     </div>
                     <div class="form-example">
                         <label for="payment">Payment 
-                        <input type="number" name="payment" id="payment" >
+                        <input type="number" name="payment" id="payment" size="30" >
                         </label>
                     </div>
                     <div class="form-example">
@@ -69,11 +82,44 @@ $payment=$_POST['payment'];
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
-                <?php
-                $query = "SELECT * FROM bride ORDER BY bride_name ASC";
-                $statement = $pdo->query($query);
-                $brides= $statement->fetchAll();
-                ?>
+                <?php if($_GET['letter']<>'')
+                    {   $query="SELECT * FROM bride WHERE bride_name LIKE '$_GET[letter]%'";
+                        $statement= $pdo->query($query);
+                        $brides=$statement->fetchAll(); ?>                       
+                    <table class="alphabet">
+                        <thead>
+                            <tr>
+                            <th colspan="2"><?php echo "$_GET[letter]"; ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($brides as $bride)
+                            {?>
+                            <tr>
+                            <td><?php echo " $bride[bride_name]";?></td>
+                            <td><?php echo " $bride[payment]€";?></td>
+                            </tr>
+                            <?php }?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            <td>Total</td>
+                            <?php $query = "SELECT SUM(payment) FROM bride WHERE bride_name LIKE '$_GET[letter]%';";
+                                  $statement = $pdo->query($query);
+                                  $sum= $statement->fetch();
+                            ?>
+                            <td><?php echo "$sum[0]€";?></td>
+                            </tr>
+                           
+                        </tfoot>
+                    </table>
+                    <?php } ?>    
+                    <?php    if($_GET['letter']==NULL){
+                        $query = "SELECT * FROM bride ORDER BY bride_name ASC";
+                        $statement = $pdo->query($query);
+                        $brides= $statement->fetchAll();
+                    ?>
+                
                 <table>
                     <thead>
                         <tr>
@@ -86,7 +132,7 @@ $payment=$_POST['payment'];
                         {?>
                         <tr>
                         <td><?php echo " $bride[bride_name]";?></td>
-                        <td class="left"><?php echo " $bride[payment]";?></td>
+                        <td><?php echo " $bride[payment]€";?></td>
                         </tr>
                         <?php }?>
                     </tbody>
@@ -97,15 +143,18 @@ $payment=$_POST['payment'];
                                 $statement = $pdo->query($query);
                                 $sum= $statement->fetch();
                         ?>
-                        <td><?php echo "$sum[0]";?></td>
+                        <td><?php echo "$sum[0]€";?></td>
                         </tr>
                        
                     </tfoot>
-                </table>
+                </table>                                     
+            
+                        <?php } ?>            
             </div>
         </div>
         
         <div  class="pen"><img src="image/inkpen.png" alt="an ink pen" class="inkpen" /></div>
+        
     </section>
 </main>
 </body>

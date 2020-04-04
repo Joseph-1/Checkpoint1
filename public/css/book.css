@@ -1,11 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
 
+header{
+    position: relative;
+}
 body {
     background-image: url('../image/background.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
 }
+.alpha{
+    height: 10px;
+    position: absolute;
+    margin-top: 50px;
+    text-decoration: none;
+}
 
+ul{
+    display: flex;
+    list-style-type: none;
+    background-color: palegoldenrod;
+    margin: 2em 0;
+    
+}
+li{
+    padding: 0 1em;
+}
+a{
+    color: black;
+    cursor:pointer;
+    text-decoration: none;
+}
 main {
     padding-top: 4em;
     font-size: 26pt;
@@ -14,10 +38,13 @@ main {
 
 .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
+    align-self: start;
 }
 
 .desktop {
     display: flex;
+    align-self: start;
+    
 }
 .pages {
     display: flex;
@@ -36,18 +63,30 @@ main {
 .leftpage {
     background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
+    size: 80px;
 }
 
 .rightpage {
     background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
+    size: 80px;
 }
+
 table{
-    font-size: larger;
+    font-size: 26pt;
+    justify-self: flex-end;
+   
 }
-tfoot tr:nth-child(2){
-    border-top: 10px;
+ tfoot td:nth-of-type(2){
+    border-top: solid 1px;
+}
+td{         
+    text-align: right;
+    size: 40px;
+}
+.alphabet th{
+    border-bottom: solid 1px;
 }
 
 @media (min-width: 1200px){
@@ -57,21 +96,30 @@ tfoot tr:nth-child(2){
     .whisky, .empty-whisky, .inkpen, .page {
         filter: drop-shadow(15px 15px 5px var(--shadow));
         
-        justify-content:space-between ;
-        
+    }
+    .empty-whisky{
+        display: none;
     }
     .whisky{
-        justify-content: flex-start;
-        font-size: small;
+        height: 33%;
     }
-    .page{
-        flex-direction: row;
+    
+    
+    .desktop{
+        display: flex;
+        position: relative;
+        align-self: flex-start;
     }
-    .inkpen{
-        align-items: flex-start;
-        align-items: baseline;
-        flex-direction: row;
+    .pen{
+         align-self: flex-end;
+         
     }
+    .rightpage{
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+       
 }
 @media (min-width:1100px) and (max-width: 1200px){
 
@@ -86,6 +134,13 @@ tfoot tr:nth-child(2){
     flex-direction: row;
     justify-content:space-between ;
     }
+    .whisky{
+        height: 33%;
+    }
+    .rightpage{
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 @media (min-width:1000px) and (max-width: 1100px){
     .whisky {
@@ -93,6 +148,13 @@ tfoot tr:nth-child(2){
     }
     .inkpen{
         display: none;
+    }
+    .empty-whisky{
+        height: 33%;
+    }
+    .rightpage{
+        display: flex;
+        justify-content: flex-end;
     }
 }
 @media (min-width: 800px) and (max-width: 1000px){
@@ -106,10 +168,20 @@ tfoot tr:nth-child(2){
         display: none;
     }
     .pages{
+        size: auto;
         justify-content: center;
     }
 }
 @media (max-width:800px ){
+    ul{
+        display: flex;
+    }
+    .a{
+        display: flex;
+        flex-direction: column;
+        align-content: flex-end;
+    }
+    
     .empty-whisky{
         display: none;
         }
@@ -121,6 +193,13 @@ tfoot tr:nth-child(2){
     }
     .pages{
         flex-direction: column-reverse;
-        align-items: center;
+        width: 800px;
     }
+    .li{
+        display: flex;
+        flex-direction: column;
+        align-content: flex-end;
+    }
+
+   
 }
