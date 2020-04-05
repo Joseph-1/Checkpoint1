@@ -1,3 +1,11 @@
+<?php
+require ('connec.php');
+$requete = "SELECT * FROM bribe";
+$statement = $pdo->query($requete);
+$brides = $statement->fetchAll();
+// var_dump($statement);
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,70 +45,28 @@
             </div>
 
             <div class="page rightpage">
-            <?php
-                require ('../connec.php');
-
-                // $requete = "SELECT * FROM bribe";
-                // $statement = $pdo->query($requete)->fetchAll();
-            ?>
-            <table>
-                <thead>
-                    <tr class="tr_head">
-                        <th colspan="2">S</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="tr_body">
-                <?php
-                    $statement = $db -> query('SELECT bribe.id, bribe.name, bribe.bribe FROM bribe');
-                    while($item = $statement -> fetch()) {
-                        echo "<td>" . $bride['name'] . "</td>";
-                        echo "<td>" . $bride['bribe'] . "€ </td>";
-                        echo "</tr>";
-                    }
-                ?>
-                        <td>Sam Burns</td>
-                        <td>100€</td>
-                    </tr>
-                
-                    <tr class="tr_body">
-                        <td>Samuel Yans</td>
-                        <td>52563€</td>
-                    </tr>
-                     <tr class="tr_body">
-                        <td>Simon Pogg</td>
-                        <td>52€</td>
-                    </tr>
-                    <tr class="tr_body">
-                        <td>Sophia Maria</td>
-                        <td>452€</td>
-                    </tr>
-                    <tr class="tr_body">
-                        <td>Stacie Humberg</td>
-                        <td>568€</td>
-                    </tr>
-                    <tr class="tr_body">
-                        <td>Steve Grant</td>
-                        <td>1000€</td>
-                    </tr>
-                    <tr class="tr_body">
-                        <td>Steve Porcher</td>
-                        <td>7865€</td>
-                    </tr>
-                    <tr class="tr_body">
-                        <td>Sylvester Stallon</td>
-                        <td>77897€</td>
-                    </tr>
-                    <tr class="tr_body">
-                        <td>Szen Tren</td>
-                        <td>562€</td>
-                    </tr>
-                    <tr class="tr_body tr-total">
-                        <td>Total</td>
-                        <td class="tdb">141059€</td>
-                    </tr>
-                </tbody>
-            </table>
+                <table>
+                    <thead>
+                        <tr class="tr_head">
+                            <th colspan="2">S</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr_body">
+                        <?php
+                            foreach($brides as $bride)
+                            {
+                                echo "<td>" . $bride['name'] . "</td>";
+                                echo "<td>" . $bride['payment'] . "€ </td>";
+                                echo "</tr>";
+                            }
+                        ?>
+                        <tr class="tr_body tr-total">
+                            <td>Total</td>
+                            <td class="tdb">141059€</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="b_inkpen">
