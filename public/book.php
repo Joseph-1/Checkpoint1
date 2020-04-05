@@ -3,7 +3,9 @@ require ('connec.php');
 $requete = "SELECT * FROM bribe";
 $statement = $pdo->query($requete);
 $brides = $statement->fetchAll();
-// var_dump($statement);
+
+
+
 ?>
 
 <!doctype html>
@@ -28,22 +30,52 @@ $brides = $statement->fetchAll();
             <img src="image/empty_whisky.png" alt="an empty whisky glass" class="empty-whisky"/>  <!-- vide -->
         </div>
 
+
+        
         <div class="pages">
             <div class="page leftpage">
                 <h2>Add a bribe</h2>
-                <form>
+                <?php
+                
+                if(isset($_POST['cotise'])) {
+                    if(isset($_POST['name'] , $_POST['number'])) {
+                        if($_POST['name'] == null && $_POST['number'] == null) {
+                            echo 'Il y a des erreurs';
+                        } elseif ($_POST['number'] <= 0) {
+                            echo'Où est mon fric';
+                        }else{
+                            $rajout = 'INSERT INTO bribe VALUES(NULL, :name, :payment)';
+                            $prepare_rajout = $pdo->prepare($rajout);
+
+                            $prepare_rajout->bindValue(":name", $_POST['name'], PDO::PARAM_STR);
+                            $prepare_rajout->bindValue(":payment",$_POST['number'], PDO::PARAM_INT  );
+
+                            if($prepare_rajout->execute()) {
+                                header('location:?page=bribe');
+                            } else {
+                                echo'erreur formulaire';
+                            }
+                        }
+
+                        
+                    }
+                
+                }
+                ?>
+<!-- ########### Form ############ -->
+                <form method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" name="name" class="form-control" id="name">
                     </div>
                     <div class="form-group">
                         <label for="number">Payment</label>
-                        <input type="number" class="form-control" id="number">
+                        <input type="number" class="form-control" name="number" id="number">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="cotise" value="cotise" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-
+<!-- ######### Table ########### -->
             <div class="page rightpage">
                 <table>
                     <thead>
@@ -61,11 +93,18 @@ $brides = $statement->fetchAll();
                                 echo "</tr>";
                             }
                         ?>
-                        <tr class="tr_body tr-total">
-                            <td>Total</td>
-                            <td class="tdb">141059€</td>
-                        </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                        <?php
+                            $requete = "SELECT SUM(payment) FROM bribe";
+                            $total = $pdo->query($requete);
+                            $totals = $total->fetch();
+                        ?>
+                            <td><?= $totals[0] ?>€</td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -78,4 +117,3 @@ $brides = $statement->fetchAll();
 </html>
 
 
-<!-- INSERT INTO bribe (id, name, payment) VALUES (NULL, 'str', 'int'), (NULL, 'str', 'int'); -->

@@ -87,8 +87,8 @@ th {
 
 }
 
-tbody {
-    float: right;
+tbody, tfoot {
+    text-align: right;
 }
 
 .tr_body > td {
@@ -96,7 +96,7 @@ tbody {
     text-align: right;
 }
 
-.tdb {
+tfoot > tr > td:last-child {
     border-top: 1px solid rgb(0, 0, 0);
 }
 @media screen and (min-width: 1100px) and (max-width: 1200px) {
@@ -143,6 +143,9 @@ tbody {
     }
     .pages {
         flex-direction: column-reverse;
+        width: 100%;
+    }
+    .page {
         width: 100%;
     }
 }
